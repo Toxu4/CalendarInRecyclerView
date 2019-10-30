@@ -7,7 +7,7 @@ import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.item_calendar.view.*
 
-class SecondCalendarItem constructor(private var currentDay: Int): Item(), ISelectionNotifier, ISelectionCallback {
+class SecondCalendarItem constructor(private var currentDay: Int) : Item(), ISelectionNotifier, ISelectionCallback {
 
     private var selectionListeners = mutableMapOf<Int, ISelectionListener>()
 
@@ -15,15 +15,19 @@ class SecondCalendarItem constructor(private var currentDay: Int): Item(), ISele
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
         with(viewHolder.itemView) {
-            recyclerView.adapter = GroupAdapter<com.xwray.groupie.ViewHolder>().apply {
-                repeat(30) {
-                    add(SecondDayItem(
-                        it,
-                        it == currentDay,
-                        this@SecondCalendarItem,
-                        this@SecondCalendarItem))
+            recyclerView.adapter = GroupAdapter<com.xwray.groupie.ViewHolder>()
+                .apply {
+                    repeat(30) {
+                        add(
+                            SecondDayItem(
+                                it,
+                                it == currentDay,
+                                this@SecondCalendarItem,
+                                this@SecondCalendarItem
+                            )
+                        )
+                    }
                 }
-            }
             recyclerView.layoutManager =
                 LinearLayoutManager(
                     this.context,

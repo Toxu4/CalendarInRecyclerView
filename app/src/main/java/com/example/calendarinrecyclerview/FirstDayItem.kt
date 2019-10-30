@@ -10,18 +10,19 @@ import kotlinx.android.synthetic.main.item_day.view.*
 
 class FirstDayItem(private val day: Int, private val currentDay: MutableLiveData<Int>) : Item() {
     private var selected = currentDay.value == day
-    private var boundViewHolder : ViewHolder? = null
+    private var boundViewHolder: ViewHolder? = null
 
-    private val currentDayObserver = Observer<Int> { newCurrentDay ->
-        val wasSelected = selected
-        selected = newCurrentDay == day
+    private val currentDayObserver =
+        Observer<Int> { newCurrentDay ->
+            val wasSelected = selected
+            selected = newCurrentDay == day
 
-        boundViewHolder?.let {
-            if (wasSelected != selected){
-                updateView(it.itemView)
+            boundViewHolder?.let {
+                if (wasSelected != selected) {
+                    updateView(it.itemView)
+                }
             }
         }
-    }
 
     private val clickListener = View.OnClickListener { currentDay.value = day }
 
@@ -45,11 +46,10 @@ class FirstDayItem(private val day: Int, private val currentDay: MutableLiveData
         super.unbind(viewHolder)
     }
 
-    private fun updateView(itemView: View) {
-        with(itemView){
+    private fun updateView(itemView: View) =
+        with(itemView) {
             day.text = this@FirstDayItem.day.toString()
             day.setTextColor(if (selected) Color.RED else Color.BLACK)
         }
-    }
 }
 

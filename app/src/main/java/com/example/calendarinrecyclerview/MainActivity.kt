@@ -14,12 +14,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
-            repeat(30){
-                add(FirstCalendarItem(it))
-                add(SecondCalendarItem(it))
-            }
-        }
+        recyclerView.adapter =
+            GroupAdapter<ViewHolder>()
+                .apply {
+                    repeat(30) {
+                        add(FirstCalendarItem(it))
+                        add(SecondCalendarItem(it))
+                    }
+                }
+
         recyclerView.layoutManager =
             LinearLayoutManager(this, RecyclerView.VERTICAL, false)
     }

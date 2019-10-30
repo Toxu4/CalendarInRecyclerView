@@ -26,20 +26,22 @@ class SecondDayItem(
     private val selectionNotifier: ISelectionNotifier,
     private val selectionCallback: ISelectionCallback
 ) : Item() {
-    private var boundViewHolder : ViewHolder? = null
 
-    private val selectionListener = object: ISelectionListener {
-        override fun onSelection(selected: Boolean) {
-            val wasSelected = this@SecondDayItem.selected
-            this@SecondDayItem.selected = selected
+    private var boundViewHolder: ViewHolder? = null
 
-            boundViewHolder?.let {
-                if (wasSelected != selected){
-                    updateView(it.itemView)
+    private val selectionListener =
+        object : ISelectionListener {
+            override fun onSelection(selected: Boolean) {
+                val wasSelected = this@SecondDayItem.selected
+                this@SecondDayItem.selected = selected
+
+                boundViewHolder?.let {
+                    if (wasSelected != selected) {
+                        updateView(it.itemView)
+                    }
                 }
             }
         }
-    }
 
     private val clickListener = View.OnClickListener { selectionCallback.onSelected(day) }
 
@@ -61,11 +63,10 @@ class SecondDayItem(
         viewHolder.itemView.day.setOnClickListener(null)
 
         super.unbind(viewHolder)
-        super.unbind(viewHolder)
     }
 
     private fun updateView(itemView: View) {
-        with(itemView){
+        with(itemView) {
             day.text = this@SecondDayItem.day.toString()
             day.setTextColor(if (selected) Color.BLUE else Color.BLACK)
         }
