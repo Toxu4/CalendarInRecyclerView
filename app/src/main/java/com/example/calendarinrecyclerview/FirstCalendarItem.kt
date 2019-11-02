@@ -1,13 +1,12 @@
 package com.example.calendarinrecyclerview
 
-import androidx.lifecycle.MutableLiveData
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.item_calendar.view.*
 
 class FirstCalendarItem constructor(private var currentDay: Int) : Item() {
-    private var liveCurrentDay: MutableLiveData<Int> = MutableLiveData(currentDay)
+    private var liveCurrentDay: SmartMutableLiveData<Int> = SmartMutableLiveData(currentDay)
 
     override fun getLayout(): Int = R.layout.item_calendar
 

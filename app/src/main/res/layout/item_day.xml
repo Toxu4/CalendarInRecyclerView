@@ -5,7 +5,7 @@
         android:id="@+id/day"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:padding="5dp"
-        android:textSize="30sp"
+        android:padding="7dp"
+        android:textSize="40sp"
         android:textStyle="bold"/>
 
