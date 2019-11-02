@@ -24,7 +24,7 @@ class FirstDayItem(private val day: Int, private val currentDay: SmartMutableLiv
         }
 
     private val clickListener = View.OnClickListener {
-        currentDay.setValue(day)
+        currentDay.value = day
     }
 
     override fun getLayout(): Int = R.layout.item_day
@@ -41,7 +41,7 @@ class FirstDayItem(private val day: Int, private val currentDay: SmartMutableLiv
     override fun unbind(viewHolder: ViewHolder) {
         boundViewHolder = null
 
-        currentDay.removeValueObserver(currentDayObserver)
+        currentDay.removeObserver(currentDayObserver)
         viewHolder.itemView.day.setOnClickListener(null)
 
         super.unbind(viewHolder)
